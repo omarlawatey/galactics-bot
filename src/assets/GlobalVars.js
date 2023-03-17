@@ -7,8 +7,71 @@ export const testMode = process.env.TESTMODE;
 
 export const GlobalVars = !testMode
   ? {
-      guildId: '1078681638998913135',
-      prefix: ''
+      prefix: 'gt!',
+      serverId: '673700884617625621',
+      generalRoles: [{ name: 'member', id: '977876896010338354' }],
+      teamRole: '1083809101273911387',
+      moderationChannel: '1080957608028028928',
+      autoResponse: [
+        {
+          command: 'yt',
+          response: `https://youtube.com/@galacticsyt`
+        }
+      ],
+      commandsChannel: '1080952376669765652',
+      welcome: {
+        Id: '941665272811630632',
+        autoRole: ['952242871854063669'],
+        botsRole: ['941783311104245810'],
+        welcomePrivateMessage: ``
+      },
+      rulesChannelId: '941633613538132008',
+      tempChannels: [
+        {
+          tempCategoryId: '1042920270903648326',
+          restrictedChannels: ['1042921652406722640', '1042922769047896065'],
+          editChannelId: {
+            id: '1042921652406722640',
+            baseRoles: [
+              {
+                id: '673700884617625621',
+                deny: [Permissions.FLAGS.VIEW_CHANNEL]
+              },
+              {
+                id: '934920779013980220',
+                allow: [Permissions.FLAGS.VIEW_CHANNEL]
+              },
+              {
+                id: '977876896010338354',
+                allow: [Permissions.FLAGS.VIEW_CHANNEL]
+              },
+              {
+                id: '978048610195341332',
+                allow: [Permissions.FLAGS.VIEW_CHANNEL]
+              }
+            ]
+          }
+        }
+      ],
+      logsChannelsId: '981359676560130079',
+      liveStatus: {
+        liveCategoryId: '952835995580129301',
+        Roles: [
+          { name: '『👥』members', id: '952242871854063669' },
+          { name: '『🎮』streamers', id: '952245434703806484' },
+          { name: '『🔮』boosters', id: '944987462084751391' }
+        ],
+        youtubeCounter: '<YOUTUBE CHANNEL ID>'
+      },
+      boostChannelId: '981359676560130079',
+      linkBlockerChannels: [
+        '941633472764715058',
+        '941383631157461002',
+        '950088308736807012',
+        '950088308736807012',
+        '941773618268995624',
+        '986423629145333800'
+      ]
     }
   : {
       prefix: 'gt!',
