@@ -5,8 +5,9 @@ DotEnv.config();
 
 export const testMode = process.env.TESTMODE;
 
-export const GlobalVars = !testMode
+export const GlobalVars = testMode
   ? {
+      name: 'lo',
       prefix: 'gt!',
       serverId: '673700884617625621',
       generalRoles: [{ name: 'member', id: '977876896010338354' }],
