@@ -5,7 +5,7 @@ const messageCreate = client => {
   client.on('messageCreate', message => {
     if (message.author.bot) return;
 
-    linksBlocker(message);
+    // linksBlocker(message);
 
     GlobalVars.tempChannels.forEach(tempChannel => {
       if (message?.channel?.parent?.id === tempChannel.tempCategoryId) {

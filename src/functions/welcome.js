@@ -3,7 +3,7 @@
 // import { UserSchema } from '../DataBase';
 
 const Welcome = (welcomeChannel, member) => {
-  welcomeChannel.send(`Welcome <@${member.id}>`);
+  // welcomeChannel.send(`Welcome <@${member.id}>`);
 };
 
 export default Welcome;
