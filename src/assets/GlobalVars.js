@@ -30,7 +30,7 @@ export const GlobalVars = testMode
       tempChannels: [
         {
           tempCategoryId: '1042920270903648326',
-          restrictedChannels: ['1042921652406722640', '1042922769047896065'],
+          restrictedChannels: ['1042921652406722640', '1086414865108848690'],
           editChannelId: {
             id: '1042921652406722640',
             baseRoles: [
