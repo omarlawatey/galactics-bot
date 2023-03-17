@@ -1,0 +1,23 @@
+{
+  "name": "galactics",
+  "version": "1.0.0",
+  "scripts": {
+    "start": "node ./dist",
+    "build": "babel src -d dist",
+    "dev": "nodemon --exec babel-node ./src",
+    "lint": "eslint"
+  },
+  "dependencies": {
+    "discord.js": "^13.8.0",
+    "dotenv": "^16.0.3",
+    "mongoose": "^6.10.0",
+    "nodemon": "^2.0.20"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.17.10",
+    "@babel/core": "^7.18.2",
+    "@babel/node": "^7.17.10",
+    "@babel/preset-env": "^7.18.2",
+    "nodemon": "^2.0.16"
+  }
+}
