@@ -39,15 +39,15 @@ export const GlobalVars = !testMode
                 deny: [Permissions.FLAGS.VIEW_CHANNEL]
               },
               {
-                id: '934920779013980220',
-                allow: [Permissions.FLAGS.VIEW_CHANNEL]
-              },
-              {
                 id: '977876896010338354',
                 allow: [Permissions.FLAGS.VIEW_CHANNEL]
               },
               {
                 id: '978048610195341332',
+                allow: [Permissions.FLAGS.VIEW_CHANNEL]
+              },
+              {
+                id: '934920779013980220',
                 allow: [Permissions.FLAGS.VIEW_CHANNEL]
               }
             ]
