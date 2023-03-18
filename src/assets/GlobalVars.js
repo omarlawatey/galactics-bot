@@ -5,7 +5,7 @@ DotEnv.config();
 
 export const testMode = process.env.TESTMODE;
 
-export const GlobalVars = testMode
+export const GlobalVars = !testMode
   ? {
       name: 'lo',
       prefix: 'gt!',
