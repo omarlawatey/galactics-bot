@@ -44,13 +44,17 @@ const tempChannels = client => {
               .children.map(i => i)
               .forEach(element => {
                 if (element.members.size === 0 && !tempChannel.restrictedChannels.includes(element.id)) {
-                  element ? element.delete().catch(err => err) : '';
+                  setTimeout(() => {
+                    if (element) {
+                      element ? element.delete().catch(err => err) : '';
+                    }
+                  }, 2000);
                 }
               });
           } catch (error) {}
         }
       });
-    }, 3000);
+    }, 1000);
   }, 2000);
 };
 
