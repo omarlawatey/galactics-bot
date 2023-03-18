@@ -1,7 +1,7 @@
-import { level } from './commandsFunction/index.js';
+import { liveStatus } from './commandsFunction/index.js';
 
 const commands = interaction => {
-  level(interaction);
+  liveStatus(interaction);
 };
 
 export default commands;

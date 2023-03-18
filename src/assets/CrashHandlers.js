@@ -1,7 +1,7 @@
 const CrashHandler = async () => {
   process.on('unhandledRejection', (reason, p) => {
-    // console.log(`[Crash-Handler] :: Unhandled Rejection/catch`);
-    // console.log(reason, p);
+    console.log(`[Crash-Handler] :: Unhandled Rejection/catch`);
+    console.log(reason, p);
   });
 
   process.on('uncaughtException', (reason, p) => {

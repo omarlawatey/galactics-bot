@@ -6,7 +6,7 @@ const index = client => {
   // Action Listeners
   ready(client);
   messageCreate(client);
-  // interactionCreate(client);
+  interactionCreate(client);
   // guildMemberAdd(client);
   voiceStateUpdate(client);
 

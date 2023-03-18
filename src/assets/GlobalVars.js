@@ -6,7 +6,8 @@ DotEnv.config();
 export const testMode = process.env.TESTMODE ? process.env.TESTMODE : false;
 
 export const GlobalVars = !testMode
-  ? {
+  ? // Real Server
+    {
       name: 'lo',
       prefix: 'gt!',
       serverId: '673700884617625621',
@@ -55,15 +56,7 @@ export const GlobalVars = !testMode
         }
       ],
       logsChannelsId: '981359676560130079',
-      liveStatus: {
-        liveCategoryId: '952835995580129301',
-        Roles: [
-          { name: '『👥』members', id: '952242871854063669' },
-          { name: '『🎮』streamers', id: '952245434703806484' },
-          { name: '『🔮』boosters', id: '944987462084751391' }
-        ],
-        youtubeCounter: '<YOUTUBE CHANNEL ID>'
-      },
+      liveStatusCategoryId: '978334872772947968',
       boostChannelId: '981359676560130079',
       linkBlockerChannels: [
         '941633472764715058',
@@ -74,7 +67,8 @@ export const GlobalVars = !testMode
         '986423629145333800'
       ]
     }
-  : {
+  : // Testing Server
+    {
       prefix: 'gt!',
       serverId: '1086033687109455982',
       generalRoles: [{ name: 'members', id: '1084043764357677125' }],
@@ -114,15 +108,7 @@ export const GlobalVars = !testMode
         }
       ],
       logsChannelsId: '981359676560130079',
-      liveStatus: {
-        liveCategoryId: '952835995580129301',
-        Roles: [
-          { name: '『👥』members', id: '952242871854063669' },
-          { name: '『🎮』streamers', id: '952245434703806484' },
-          { name: '『🔮』boosters', id: '944987462084751391' }
-        ],
-        youtubeCounter: '<YOUTUBE CHANNEL ID>'
-      },
+      liveStatusCategoryId: '1086033688871063667',
       boostChannelId: '981359676560130079',
       linkBlockerChannels: [
         '941633472764715058',

@@ -12,7 +12,8 @@ const commandsCreate = (commands, DiscordJS) => {
   // commands?.create(badword(DiscordJS));
   // commands?.create(badwordList(DiscordJS));
 
-  commands?.create(level(DiscordJS));
+  // commands?.create(liveStatus());
+  commands?.create(liveStatus(DiscordJS));
 };
 
 // const badword = DiscordJS => {
@@ -318,10 +319,38 @@ const commandsCreate = (commands, DiscordJS) => {
 //   };
 // };
 
-const level = () => ({
-  name: 'level',
-  description: 'Show your level',
-  defaultPermission: false
+const liveStatus = DiscordJS => ({
+  name: 'live-status',
+  description: 'Add Live Status',
+  options: [
+    {
+      name: 'type',
+      description: 'Live status tracker type',
+      required: 'true',
+      type: DiscordJS.Constants.ApplicationCommandOptionTypes.STRING,
+      choices: [
+        {
+          name: 'Role',
+          value: 'role'
+        },
+        {
+          name: 'YouTube',
+          value: 'yt'
+        }
+        // TODO
+        // {
+        // name: 'Twitch',
+        // value: 'twitch'
+        // }
+      ]
+    },
+    {
+      name: 'value',
+      description: 'The id to be count Tracked',
+      required: 'true',
+      type: DiscordJS.Constants.ApplicationCommandOptionTypes.STRING
+    }
+  ]
 });
 
 export default commandsCreate;

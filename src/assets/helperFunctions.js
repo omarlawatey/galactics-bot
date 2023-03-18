@@ -1,4 +1,5 @@
 import { Permissions } from 'discord.js';
+import youtube from '../apis/youtube';
 
 export const urlFinder = (url, regex) => regex.test(url.toLowerCase());
 
@@ -59,4 +60,21 @@ export const findDuplicates = arr => {
   return arr.map(name =>
     Number(name.split('')[name.split('').length - 1]) ? name.split('').slice(0, -1).join('').trim() : name
   );
+};
+
+export const getCounter = async (guild, type, value) => {
+  switch (type) {
+    case 'role':
+      const role = await guild.roles.cache.get(value);
+      return role.members.map(i => i).length;
+    case 'yt':
+      const ytChannel = await youtube(value);
+      return ytChannel.subscriberCount;
+
+    case 'twitch':
+    // TODO
+
+    default:
+      return 'NOT FOUND';
+  }
 };
