@@ -3,6 +3,8 @@ import youtube from '../apis/youtube';
 
 export const urlFinder = (url, regex) => regex.test(url.toLowerCase());
 
+export const difference = (arr1, arr2) => arr1.filter(x => !arr2.includes(x));
+
 export const createChannel = (newState, activityName, tempChannel) =>
   newState.guild?.channels
     .create(activityName, {

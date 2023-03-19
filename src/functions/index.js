@@ -4,3 +4,4 @@ export { default as linksBlocker } from './linksblocker';
 export { default as tempChannels } from './tempChannels.js';
 export { default as tempChannelsCommands } from './tempChannelsCommands.js';
 export { default as liveStatus } from './liveStatus.js';
+export { default as roleWatcher } from './roleWatcher.js';
