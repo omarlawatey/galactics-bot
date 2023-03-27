@@ -1,7 +1,8 @@
-import { liveStatus } from './commandsFunction/index.js';
+import { liveStatus, clear } from './commandsFunction';
 
 const commands = interaction => {
   liveStatus(interaction);
+  clear(interaction);
 };
 
 export default commands;

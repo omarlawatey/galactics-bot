@@ -1,5 +1,4 @@
 import { GlobalVars } from '../assets/GlobalVars';
-import { difference } from '../assets/helperFunctions';
 
 const recording = (oldState, newState, guild) => {
   if (newState?.channel?.id === GlobalVars.youTube.recordingChannelId) {

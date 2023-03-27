@@ -1,19 +1,6 @@
 const commandsCreate = (commands, DiscordJS) => {
-  // commands?.create(mute(DiscordJS));
-  // commands?.create(unmute(DiscordJS));
-  // commands?.create(ban(DiscordJS));
-  // commands?.create(unban(DiscordJS));
-  // commands?.create(kick(DiscordJS));
-  // commands?.create(role(DiscordJS));
-  // commands?.create(clear(DiscordJS));
-  // commands?.create(warn(DiscordJS));
-  // commands?.create(unwarn(DiscordJS));
-  // commands?.create(warnList(DiscordJS));
-  // commands?.create(badword(DiscordJS));
-  // commands?.create(badwordList(DiscordJS));
-
-  // commands?.create(liveStatus());
   commands?.create(liveStatus(DiscordJS));
+  commands?.create(clear(DiscordJS));
 };
 
 // const badword = DiscordJS => {
@@ -349,6 +336,19 @@ const liveStatus = DiscordJS => ({
       description: 'The id to be count Tracked',
       required: 'true',
       type: DiscordJS.Constants.ApplicationCommandOptionTypes.STRING
+    }
+  ]
+});
+
+const clear = DiscordJS => ({
+  name: 'clear',
+  description: 'Clear N amount of massages',
+  options: [
+    {
+      name: 'amount',
+      description: 'The amount wanted to be cleared',
+      required: 'true',
+      type: DiscordJS.Constants.ApplicationCommandOptionTypes.NUMBER
     }
   ]
 });
