@@ -34,7 +34,13 @@ export const GlobalVars = !testMode
           vcGenerator: '1086414865108848690'
         }
       ],
-      liveStatusCategoryId: '978334872772947968'
+      liveStatusCategoryId: '978334872772947968',
+      youTube: {
+        recordingChannelId: '1085996315470737459',
+        membersRoles: ['1083772544877862972', '1083772542747168829'],
+        recordingRole: '1089735583716343949',
+        recordingMod: '1089735737450172497'
+      }
     }
   : // Testing Server
     {
@@ -64,27 +70,13 @@ export const GlobalVars = !testMode
           editVc: '1086936466288021544',
           vcGenerator: '1086936495232913479'
         }
-      ]
-
-      // tempChannels: [
-      //   {
-      //     tempCategoryId: '1086033689420513480',
-      //     restrictedChannels: ['1086033689420513481', '1086033689420513482'],
-      //     editChannelId: {
-      //       id: '1086033689420513481',
-      //       baseRoles: [
-      //         {
-      //           id: '1086033687109455982',
-      //           deny: [Permissions.FLAGS.VIEW_CHANNEL]
-      //         },
-      //         {
-      //           id: '1086033687109455989',
-      //           allow: [Permissions.FLAGS.VIEW_CHANNEL]
-      //         }
-      //       ]
-      //     }
-      //   }
-      // ],
+      ],
+      youTube: {
+        recordingChannelId: '1086033688871063666',
+        membersRoles: ['1086033687168176156', '1086033687168176155'],
+        recordingRole: '1089721694723264512',
+        recordingMod: '1089727009376190595'
+      }
 
       // logsChannelsId: '981359676560130079',
       // teamRole: '1086033687130411097',
