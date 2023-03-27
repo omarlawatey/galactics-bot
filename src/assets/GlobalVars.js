@@ -29,29 +29,9 @@ export const GlobalVars = !testMode
       ],
       tempChannels: [
         {
-          tempCategoryId: '1042920270903648326',
-          restrictedChannels: ['1042921652406722640', '1086414865108848690'],
-          editChannelId: {
-            id: '1042921652406722640',
-            baseRoles: [
-              {
-                id: '673700884617625621',
-                deny: [Permissions.FLAGS.VIEW_CHANNEL]
-              },
-              {
-                id: '977876896010338354',
-                allow: [Permissions.FLAGS.VIEW_CHANNEL]
-              },
-              {
-                id: '978048610195341332',
-                allow: [Permissions.FLAGS.VIEW_CHANNEL]
-              },
-              {
-                id: '934920779013980220',
-                allow: [Permissions.FLAGS.VIEW_CHANNEL]
-              }
-            ]
-          }
+          categoryId: '1042920270903648326',
+          editVc: '1042921652406722640',
+          vcGenerator: '1086414865108848690'
         }
       ],
       liveStatusCategoryId: '978334872772947968'
