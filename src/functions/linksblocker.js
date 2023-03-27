@@ -1,4 +1,3 @@
-import { MessageEmbed } from 'discord.js';
 import { GlobalVars } from '../assets/GlobalVars';
 import { urlFinder } from '../assets/helperFunctions';
 
