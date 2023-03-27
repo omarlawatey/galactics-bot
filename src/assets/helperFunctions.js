@@ -1,31 +1,29 @@
-import { Permissions } from 'discord.js';
+import { tempChannelsdb } from '../apis';
 import youtube from '../apis/youtube';
 
 export const urlFinder = (url, regex) => regex.test(url.toLowerCase());
 
 export const difference = (arr1, arr2) => arr1.filter(x => !arr2.includes(x));
 
-export const createChannel = (newState, activityName, tempChannel) =>
+export const createChannel = (newState, activityName) =>
   newState.guild?.channels
     .create(activityName, {
       type: 'GUILD_VOICE',
       parent: newState?.channel?.parent?.id
     })
     .then(vc => {
+      tempChannelsdb.post('/', {
+        channelId: vc.id,
+        creator: newState.member.id
+      });
+      vc.lockPermissions();
       newState.member.voice.setChannel(vc);
-      vc.permissionOverwrites.set([
-        ...tempChannel.editChannelId.baseRoles,
-        {
-          id: newState.member.id,
-          allow: [Permissions.FLAGS.CONNECT]
-        }
-      ]);
     });
 
 export const channelArranger = (arr, guild, categoryId, restrictedChannels) => {
   const uniqueValues = [...new Set(findDuplicates(arr))];
 
-  const filterdChannels = uniqueValues.map(item =>
+  const filteredChannels = uniqueValues.map(item =>
     guild?.channels.cache
       .filter(
         channel =>
@@ -34,28 +32,22 @@ export const channelArranger = (arr, guild, categoryId, restrictedChannels) => {
       .map(i => i)
   );
 
-  filterdChannels.forEach((tempChannels, tempsIndex) => {
-    tempChannels.forEach((tempChannel, tempIndex) => {
-      try {
-        tempChannel ? tempChannel.setName(`${uniqueValues[tempsIndex]}${tempIndex === 0 ? '' : ` ${tempIndex}`}`) : '';
-      } catch (err) {
-        console.log('channel rearanger ' + err);
-      }
-    });
-  });
+  filteredChannels.forEach((tempChannels, tempsIndex) =>
+    tempChannels.forEach((tempChannel, tempIndex) =>
+      tempChannel ? tempChannel.setName(`${uniqueValues[tempsIndex]}${tempIndex === 0 ? '' : ` ${tempIndex}`}`) : ''
+    )
+  );
 };
 
-export const userActivitey = newState => {
-  const activities = newState?.member?.presence?.activities;
-  if (!activities || activities?.length === 0 || (activities?.[0]?.name === 'Custom Status' && !activities?.[1]?.name))
-    return `⌬｜Talking`;
-  // ${fontGenerator(selectServer(newState.guild.id), )};
-  else {
-    const activityName = activities?.[0]?.name === 'Custom Status' ? activities?.[1]?.name : activities?.[0]?.name;
+export const userActivity = async member => {
+  const activities = await member?.presence?.activities;
+  if (activities.length === 1 && activities?.[0]?.id === 'custom') return `⌬｜talking`;
 
-    return `⌬｜${activityName}`;
-    // fontGenerator(selectServer(newState.guild.id));
-  }
+  if (activities.length)
+    return `⌬｜${
+      activities?.[0]?.id === 'custom' ? activities?.[1].name.toLowerCase() : activities?.[0].name.toLowerCase()
+    }`;
+  return `⌬｜talking`;
 };
 
 export const findDuplicates = arr => {

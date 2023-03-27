@@ -1,72 +1,43 @@
-import { createChannel, userActivitey } from '../assets/helperFunctions';
+import { tempChannelsdb } from '../apis';
+import { createChannel, userActivity } from '../assets/helperFunctions';
 
-const tempChannels = async (oldState, newState, guild, tempChannel, restrictedChannels) => {
-  let activity = userActivitey(newState);
+const tempChannels = async (oldState, newState, guild, tempChannel) => {
+  let activity = await userActivity(newState?.member);
+  const editVc = await guild.channels.cache.get(tempChannel.editVc);
+  let tempChannelVc = await guild.channels.cache.get(tempChannel.vcGenerator);
 
-  const editVc = await guild.channels.cache.get(tempChannel.editChannelId.id);
-
-  let tempChannelVc = await guild.channels.cache.get(tempChannel.restrictedChannels[1]);
-
-  if (newState?.channel?.id === tempChannel.restrictedChannels[1]) {
+  if (newState?.channel?.parentId === tempChannel.categoryId) {
     editVc.permissionOverwrites.edit(newState?.member?.id, {
       VIEW_CHANNEL: true,
       SEND_MESSAGES: true
     });
 
-    createChannel(newState, activity, tempChannel).then(_ =>
+    if (newState?.channel?.id !== tempChannel.vcGenerator)
+      newState?.channel.permissionOverwrites.edit(newState?.member?.id, {
+        SEND_MESSAGES: true,
+        READ_MESSAGE_HISTORY: true
+      });
+  }
+
+  if (newState?.channel?.id === tempChannel.vcGenerator)
+    createChannel(newState, activity, tempChannel).then(() =>
       tempChannelVc.permissionOverwrites
-        .edit(newState?.member?.id, {
-          CONNECT: false
-        })
-        .then(_ =>
-          setTimeout(() => {
-            tempChannelVc.permissionOverwrites.edit(newState?.member?.id, {
-              CONNECT: true
-            });
-          }, 3000)
-        )
+        .edit(newState?.member?.id, { CONNECT: false, SEND_MESSAGES: false, READ_MESSAGE_HISTORY: false })
+        .then(_ => setTimeout(() => tempChannelVc.permissionOverwrites.delete(newState?.member?.id), 3000))
     );
-  }
 
-  if (
-    oldState?.channel?.members.size === 0 &&
-    !restrictedChannels.includes(oldState.channel.id) &&
-    oldState?.channel?.parentId === tempChannel.tempCategoryId
-  ) {
-    tempChannelVc.permissionOverwrites.edit(oldState?.member?.id, {
-      CONNECT: false
-    });
+  if (oldState?.channel?.parentId === tempChannel.categoryId) {
+    if (newState?.channel?.parentId !== tempChannel.categoryId) {
+      editVc.permissionOverwrites.delete(oldState?.member?.id);
 
-    editVc.permissionOverwrites.delete(oldState?.member?.id);
+      // oldState?.channel?.permissionOverwrites.delete(oldState?.member?.id);
+    }
 
-    oldState.channel
-      .delete()
-      .then(async _ =>
-        (await tempChannelVc.permissionOverwrites.cache.get(oldState?.member?.id))
-          ? tempChannelVc.permissionOverwrites.delete(oldState?.member?.id)
-          : ''
-      );
-    setTimeout(() => {
-      tempChannelVc.permissionOverwrites.delete(newState?.member?.id);
-    }, 3000);
-  }
+    if (tempChannelVc.id !== oldState?.channel?.id && oldState?.channel?.members.size === 0) {
+      const oldDbVc = await (await tempChannelsdb.get(`?channelId=${oldState?.channel?.id}`)).data[0];
 
-  if (
-    newState?.channel?.parent?.id === tempChannel.tempCategoryId &&
-    !restrictedChannels.includes(newState?.channel?.id)
-  ) {
-    editVc.permissionOverwrites.edit(newState?.member?.id, {
-      VIEW_CHANNEL: true,
-      SEND_MESSAGES: true
-    });
-  }
-
-  if (
-    oldState?.channel?.parent?.id === tempChannel.tempCategoryId &&
-    newState.channel === null &&
-    !restrictedChannels.includes(newState?.channel?.id)
-  ) {
-    editVc.permissionOverwrites.delete(newState?.member?.id);
+      oldState.channel.delete().then(_ => tempChannelsdb.delete(`/${oldDbVc.id}`));
+    }
   }
 };
 

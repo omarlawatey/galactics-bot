@@ -26,10 +26,10 @@ const voiceStateUpdate = client => {
 
     GlobalVars.tempChannels.forEach(tempChannel => {
       if (
-        oldState?.channel?.parent?.id === tempChannel.tempCategoryId ||
-        newState?.channel?.parent?.id === tempChannel.tempCategoryId
+        oldState?.channel?.parent?.id === tempChannel.categoryId ||
+        newState?.channel?.parent?.id === tempChannel.categoryId
       )
-        tempChannels(oldState, newState, guild, tempChannel, tempChannel.restrictedChannels);
+        tempChannels(oldState, newState, guild, tempChannel);
     });
   });
 };

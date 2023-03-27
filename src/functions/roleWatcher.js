@@ -44,9 +44,8 @@ const roleWatcher = async (activeMember, oldState, newState) => {
           if (
             roleSpreadersIndexes[i]?.rawPosition < removedRole?.rawPosition &&
             removedRole?.rawPosition <= roleSpreadersIndexes[i - 1]?.rawPosition
-          ) {
+          )
             activeMember.roles.add(roleSpreadersIndexes[i - 1]);
-          }
         }
       });
     }

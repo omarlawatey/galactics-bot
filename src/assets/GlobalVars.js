@@ -60,26 +60,7 @@ export const GlobalVars = !testMode
     {
       prefix: 'gt!',
       serverId: '1086033687109455982',
-      generalRoles: [{ name: 'members', id: '1084043764357677125' }],
-      tempChannels: [
-        {
-          tempCategoryId: '1086033689420513480',
-          restrictedChannels: ['1086033689420513481', '1086033689420513482'],
-          editChannelId: {
-            id: '1086033689420513481',
-            baseRoles: [
-              {
-                id: '1086033687109455982',
-                deny: [Permissions.FLAGS.VIEW_CHANNEL]
-              },
-              {
-                id: '1086033687109455989',
-                allow: [Permissions.FLAGS.VIEW_CHANNEL]
-              }
-            ]
-          }
-        }
-      ],
+      generalRoles: [{ name: 'members', id: '1086033687109455989' }],
       liveStatusCategoryId: '1086033688871063667',
       roleSpreaders: [
         '1086033687201726635',
@@ -96,7 +77,34 @@ export const GlobalVars = !testMode
         '1086033687130411094',
         '1086033687130411089',
         '1086033687109455991'
+      ],
+      tempChannels: [
+        {
+          categoryId: '1086033689420513480',
+          editVc: '1086936466288021544',
+          vcGenerator: '1086936495232913479'
+        }
       ]
+
+      // tempChannels: [
+      //   {
+      //     tempCategoryId: '1086033689420513480',
+      //     restrictedChannels: ['1086033689420513481', '1086033689420513482'],
+      //     editChannelId: {
+      //       id: '1086033689420513481',
+      //       baseRoles: [
+      //         {
+      //           id: '1086033687109455982',
+      //           deny: [Permissions.FLAGS.VIEW_CHANNEL]
+      //         },
+      //         {
+      //           id: '1086033687109455989',
+      //           allow: [Permissions.FLAGS.VIEW_CHANNEL]
+      //         }
+      //       ]
+      //     }
+      //   }
+      // ],
 
       // logsChannelsId: '981359676560130079',
       // teamRole: '1086033687130411097',

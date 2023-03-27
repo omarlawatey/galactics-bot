@@ -7,17 +7,14 @@ const messageCreate = client => {
 
     // linksBlocker(message);
 
-    GlobalVars.tempChannels.forEach(tempChannel => {
-      if (message?.channel?.parent?.id === tempChannel.tempCategoryId) {
-        const { id, baseRoles } = tempChannel.editChannelId;
-        if (message.channel?.parent?.id !== tempChannel.tempCategoryId) return;
-        if (message.author.bot || message.channel.id !== id) return;
+    GlobalVars.tempChannels.forEach(async tempChannel => {
+      const guild = await client.guilds.cache.get(GlobalVars.serverId);
+      const user = await guild.members.cache.get(message.author.id);
 
-        const guild = client.guilds.cache.get(GlobalVars.serverId);
-        const user = guild.members.cache.get(message.author.id);
+      if (message.channel?.parentId !== tempChannel.categoryId || message.channel.id !== tempChannel.editVc) return;
+      if (!user.voice.channel) return setTimeout(() => message.delete(), 500);
 
-        tempChannelsCommands(user, message, id, baseRoles, tempChannel);
-      }
+      tempChannelsCommands(user, message);
     });
   });
 };

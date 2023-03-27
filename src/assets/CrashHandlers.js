@@ -1,5 +1,7 @@
 const CrashHandler = async () => {
   process.on('unhandledRejection', (reason, p) => {
+    if (reason.stack.split('\n')[0].split(' ').slice(1).join(' ') === 'Unknown Channel') return;
+
     console.log(`[Crash-Handler] :: Unhandled Rejection/catch`);
     console.log(reason, p);
   });
