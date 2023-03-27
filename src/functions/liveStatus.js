@@ -27,8 +27,11 @@ const liveStatus = async guild => {
       );
     });
 
-    const inActiveLiveStatus = dbLiveStatus.filter(dbItem =>
-      liveStatusCategory.children.map(({ name, id }) => ({ name, id })).some(channel => channel.id === dbItem.channelId)
+    const inActiveLiveStatus = dbLiveStatus.filter(
+      dbItem =>
+        !liveStatusCategory.children
+          .map(({ name, id }) => ({ name, id }))
+          .some(channel => channel.id === dbItem.channelId)
     );
 
     inActiveLiveStatus.forEach(({ id }) => liveStatusdb.delete(`/${id}`));
