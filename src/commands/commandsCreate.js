@@ -3,6 +3,7 @@ const commandsCreate = (commands, DiscordJS) => {
   commands?.create(clear(DiscordJS));
   commands?.create(slowMode(DiscordJS));
   commands?.create(avatar(DiscordJS));
+  commands?.create(diceRoll(DiscordJS));
 };
 
 // const badword = DiscordJS => {
@@ -389,6 +390,19 @@ const avatar = DiscordJS => ({
           value: 'server'
         }
       ]
+    }
+  ]
+});
+
+const diceRoll = DiscordJS => ({
+  name: 'roll-dice',
+  description: 'Get random number between 1 to 6',
+  options: [
+    {
+      name: 'max-number',
+      description: 'max number allowed',
+      required: false,
+      type: DiscordJS.Constants.ApplicationCommandOptionTypes.NUMBER
     }
   ]
 });
