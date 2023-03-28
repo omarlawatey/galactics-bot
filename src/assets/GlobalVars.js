@@ -46,10 +46,10 @@ export const GlobalVars = !testMode
       },
       welcome: {
         channelId: '977644014952124456',
-        welcomeDescription: (member, memberCount) => `> \`#\` Welcome ${member} to our server!
-> \`#\` __Important to read__ \`:\` __<#${GlobalVars.welcome.rulesChannelId}>__
-> \`#\` Total members \`:\` **${memberCount}**
-> \`#\` Enjoy with US.`,
+        welcomeDescription: (member, memberCount) => `\`#\` Welcome ${member} to our server!
+\`#\` __Important to read__ \`:\` <#${GlobalVars.welcome.rulesChannelId}>
+\`#\` Total members \`:\` **${memberCount}**
+\`#\` Enjoy with US.`,
         privateMessage: ``,
         rulesChannelId: '942614766634008576'
       }
