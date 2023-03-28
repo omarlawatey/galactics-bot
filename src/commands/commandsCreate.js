@@ -2,6 +2,7 @@ const commandsCreate = (commands, DiscordJS) => {
   commands?.create(liveStatus(DiscordJS));
   commands?.create(clear(DiscordJS));
   commands?.create(slowMode(DiscordJS));
+  commands?.create(avatar(DiscordJS));
 };
 
 // const badword = DiscordJS => {
@@ -366,4 +367,30 @@ const slowMode = DiscordJS => ({
     }
   ]
 });
+
+const avatar = DiscordJS => ({
+  name: 'avatar',
+  description: "Get's your avatar",
+  options: [
+    {
+      name: 'user',
+      description: "Get's specific user's avatar",
+      required: 'false',
+      type: DiscordJS.Constants.ApplicationCommandOptionTypes.USER
+    },
+    {
+      name: 'server',
+      description: "Get's this server's avatar",
+      required: false,
+      type: DiscordJS.Constants.ApplicationCommandOptionTypes.STRING,
+      choices: [
+        {
+          name: 'server',
+          value: 'server'
+        }
+      ]
+    }
+  ]
+});
+
 export default commandsCreate;
