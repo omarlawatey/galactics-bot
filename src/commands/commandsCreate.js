@@ -1,6 +1,7 @@
 const commandsCreate = (commands, DiscordJS) => {
   commands?.create(liveStatus(DiscordJS));
   commands?.create(clear(DiscordJS));
+  commands?.create(slowMode(DiscordJS));
 };
 
 // const badword = DiscordJS => {
@@ -353,4 +354,16 @@ const clear = DiscordJS => ({
   ]
 });
 
+const slowMode = DiscordJS => ({
+  name: 'slow-mode',
+  description: "Change channel's slow-mode",
+  options: [
+    {
+      name: 'time',
+      description: 'The time wanted to be waited',
+      required: 'true',
+      type: DiscordJS.Constants.ApplicationCommandOptionTypes.NUMBER
+    }
+  ]
+});
 export default commandsCreate;
