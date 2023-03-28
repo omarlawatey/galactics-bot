@@ -1,6 +1,6 @@
 import GuildSchema from '../Schemas/GuildSchema';
 
-export const GuildData = async (
+const GuildUpdate = async (
   guild,
   data = {
     type: 'create'
@@ -19,3 +19,5 @@ export const GuildData = async (
   }
   return await GuildSchema.findOne({ guildId: guild.id });
 };
+
+export default GuildUpdate;

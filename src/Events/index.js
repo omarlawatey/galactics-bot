@@ -1,5 +1,14 @@
-import { ready, messageCreate, interactionCreate, voiceStateUpdate, guildMemberUpdate } from './EventListeners';
+import {
+  ready,
+  messageCreate,
+  interactionCreate,
+  voiceStateUpdate,
+  guildMemberUpdate,
+  guildMemberAdd,
+  guildCreate
+} from './EventListeners';
 import { tempChannels } from './TimedEventListeners';
+import { MongoDB } from './FunctionsSetupsListeners';
 
 const index = client => {
   // Action Listeners
@@ -7,11 +16,12 @@ const index = client => {
   messageCreate(client);
   interactionCreate(client);
   guildMemberUpdate(client);
-  // guildMemberAdd(client);
+  guildMemberAdd(client);
   voiceStateUpdate(client);
+  guildCreate(client);
 
   // Functions Setups
-  // MongoDB();
+  MongoDB();
 
   // Timed Actions
   tempChannels(client);
