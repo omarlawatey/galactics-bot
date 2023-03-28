@@ -10,7 +10,11 @@ export const GlobalVars = !testMode
     {
       prefix: 'gt!',
       serverId: '673700884617625621',
-      generalRoles: [{ name: 'member', id: '977876896010338354' }],
+      generalRoles: [
+        { name: 'members', id: '977876896010338354' },
+        { name: 'bots', id: '978048306246713405' }
+      ],
+      liveStatusCategoryId: '978334872772947968',
       roleSpreaders: [
         '1083771433953542208',
         '1083771976155406537',
@@ -34,12 +38,20 @@ export const GlobalVars = !testMode
           vcGenerator: '1086414865108848690'
         }
       ],
-      liveStatusCategoryId: '978334872772947968',
       youTube: {
         recordingChannelId: '1085996315470737459',
         membersRoles: ['1083772544877862972', '1083772542747168829'],
         recordingRole: '1089735583716343949',
         recordingMod: '1089735737450172497'
+      },
+      welcome: {
+        channelId: '977644014952124456',
+        welcomeDescription: (member, memberCount) => `> \`#\` Welcome ${member} to our server!
+> \`#\` __Important to read__ \`:\` __<#${GlobalVars.welcome.rulesChannelId}>__
+> \`#\` Total members \`:\` **${memberCount}**
+> \`#\` Enjoy with US.`,
+        privateMessage: ``,
+        rulesChannelId: '942614766634008576'
       }
     }
   : // Testing Server
