@@ -126,7 +126,7 @@ const tempChannelsCommands = async (user, message) => {
           content: `${message.author} Unknown Command. Please use one of the commands above`,
           ephemeral: true
         })
-        .then(msg => setTimeout(() => msg.delete(), 2000));
+        .then(msg => setTimeout(() => msg.delete(), 3500));
 
       break;
   }

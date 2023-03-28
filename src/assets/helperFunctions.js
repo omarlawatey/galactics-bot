@@ -1,4 +1,6 @@
-import { tempChannelsdb } from '../apis';
+import Canvas from 'canvas';
+import Jimp from 'jimp';
+import { lastWelcomeddb, tempChannelsdb } from '../apis';
 import youtube from '../apis/youtube';
 
 export const urlFinder = (url, regex) => regex.test(url.toLowerCase());
@@ -50,11 +52,10 @@ export const userActivity = async member => {
   return `⌬｜talking`;
 };
 
-export const findDuplicates = arr => {
-  return arr.map(name =>
+export const findDuplicates = arr =>
+  arr.map(name =>
     Number(name.split('')[name.split('').length - 1]) ? name.split('').slice(0, -1).join('').trim() : name
   );
-};
 
 export const getCounter = async (guild, type, value) => {
   switch (type) {
@@ -71,4 +72,42 @@ export const getCounter = async (guild, type, value) => {
     default:
       return 'NOT FOUND';
   }
+};
+
+export const updateLastWelcomed = async user => {
+  const oldData = await (await lastWelcomeddb.get('/')).data;
+  const welcomedList = await oldData.map(({ userId }) => userId);
+
+  if (welcomedList.includes(user.id)) return true;
+
+  if (welcomedList.length + 1 >= 3) await lastWelcomeddb.delete(`/${oldData[0].id}`);
+
+  await lastWelcomeddb.post('/', { userId: user.id });
+
+  return false;
+};
+
+export const welcomeImage = async (member, link) => {
+  const canvas = Canvas.createCanvas(500, 190);
+  const ctx = canvas.getContext('2d');
+  const fixedbkg = await Canvas.loadImage(link);
+
+  ctx.drawImage(fixedbkg, 0, 0, 500, 190);
+
+  let image = await Jimp.read(
+    member.user.displayAvatarURL({
+      format: 'jpg',
+      dynamic: true
+    })
+  );
+
+  image.resize(512, 512);
+  image.circle();
+  let raw = await image.getBufferAsync('image/png');
+
+  const avatar = await Canvas.loadImage(raw);
+  // Draw a shape onto the main canvas
+  ctx.drawImage(avatar, 197, 33, 106, 106);
+
+  return canvas.toBuffer();
 };

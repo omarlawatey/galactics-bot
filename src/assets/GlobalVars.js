@@ -46,12 +46,14 @@ export const GlobalVars = !testMode
     {
       prefix: 'gt!',
       serverId: '1086033687109455982',
-      generalRoles: [{ name: 'members', id: '1086033687109455989' }],
+      generalRoles: [
+        { name: 'members', id: '1086033687109455989' },
+        { name: 'bots', id: '1086033687109455985' }
+      ],
       liveStatusCategoryId: '1086033688871063667',
       roleSpreaders: [
         '1086033687201726635',
         '1086033687184937048',
-        '1086033687184937045',
         '1086033687184937045',
         '1086033687168176157',
         '1086033687168176154',
@@ -62,7 +64,8 @@ export const GlobalVars = !testMode
         '1086033687130411096',
         '1086033687130411094',
         '1086033687130411089',
-        '1086033687109455991'
+        '1086033687109455991',
+        '1086033687109455986'
       ],
       tempChannels: [
         {
@@ -76,6 +79,15 @@ export const GlobalVars = !testMode
         membersRoles: ['1086033687168176156', '1086033687168176155'],
         recordingRole: '1089721694723264512',
         recordingMod: '1089727009376190595'
+      },
+      welcome: {
+        channelId: '1086033689143676980',
+        welcomeDescription: (member, memberCount) => `> \`#\` Welcome ${member} to our server!
+> \`#\` __Important to read__ \`:\` __<#${GlobalVars.welcome.rulesChannelId}>__
+> \`#\` Total members \`:\` **${memberCount}**
+> \`#\` Enjoy with US.`,
+        privateMessage: ``,
+        rulesChannelId: '1086033688871063671'
       }
 
       // logsChannelsId: '981359676560130079',
