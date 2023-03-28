@@ -2,7 +2,7 @@ import { tempChannelsdb } from '../apis';
 import { createChannel, userActivity } from '../assets/helperFunctions';
 
 const tempChannels = async (oldState, newState, guild, tempChannel) => {
-  let activity = await userActivity(newState?.member);
+  let activity = await userActivity(oldState?.member);
   const editVc = await guild.channels.cache.get(tempChannel.editVc);
   let tempChannelVc = await guild.channels.cache.get(tempChannel.vcGenerator);
 
