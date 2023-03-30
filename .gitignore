@@ -4,3 +4,4 @@ db.json
 dist
 
 .env
+ecosystem.config.js
