@@ -53,18 +53,16 @@ const tempChannels = client => {
       const vcGenerator = await guild.channels.cache.get(tempChannelInfo.vcGenerator);
       vcGenerator.members
         .map(i => i)
-        .forEach(
-          async member =>
-            createChannel(
-              { member, channel: member.voice.channel, guild: member.guild },
-              await userActivity(member),
-              tempChannelInfo
-            ).then(() =>
-              vcGenerator.permissionOverwrites
-                .edit(member?.id, { CONNECT: false })
-                .then(_ => setTimeout(() => vcGenerator.permissionOverwrites.delete(member?.id), 3000))
-            )
-          // member.voice.channel.id === tempChannelInfo.vcGenerator ? member.voice.setChannel(null) : ''
+        .forEach(async member =>
+          createChannel(
+            { member, channel: member.voice.channel, guild: member.guild },
+            await userActivity(member),
+            tempChannelInfo
+          ).then(() =>
+            vcGenerator.permissionOverwrites
+              .edit(member?.id, { CONNECT: false })
+              .then(_ => setTimeout(() => vcGenerator.permissionOverwrites.delete(member?.id), 3000))
+          )
         );
     });
   }, ms('6s'));

@@ -80,7 +80,7 @@ export const updateLastWelcomed = async user => {
 
   if (welcomedList.includes(user.id)) return true;
 
-  if (welcomedList.length + 1 >= 3) await lastWelcomeddb.delete(`/${oldData[0].id}`);
+  if (welcomedList.length >= 3) await lastWelcomeddb.delete(`/${oldData[0].id}`);
 
   await lastWelcomeddb.post('/', { userId: user.id });
 
