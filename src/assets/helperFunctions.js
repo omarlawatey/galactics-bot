@@ -43,7 +43,7 @@ export const channelArranger = (arr, guild, categoryId, restrictedChannels) => {
 
 export const userActivity = async member => {
   const activities = await member?.presence?.activities;
-  if (activities.length === 1 && activities?.[0]?.id === 'custom') return `⌬｜talking`;
+  if (!activities || (activities?.length === 1 && activities?.[0]?.id === 'custom')) return `⌬｜talking`;
 
   if (activities.length)
     return `⌬｜${
