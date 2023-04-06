@@ -1,7 +1,7 @@
 import ms from 'ms';
 import { tempChannelsdb } from '../../apis';
 import { GlobalVars } from '../../assets/GlobalVars';
-import { channelArranger } from '../../assets/helperFunctions';
+import { channelArranger, createChannel, userActivity } from '../../assets/helperFunctions';
 
 const tempChannels = client => {
   const server = GlobalVars;
@@ -50,9 +50,22 @@ const tempChannels = client => {
         [tempChannelInfo.editVc, tempChannelInfo.vcGenerator]
       );
 
-      (await guild.channels.cache.get(tempChannelInfo.vcGenerator).members.map(i => i)).forEach(member =>
-        member.voice.setChannel(null)
-      );
+      const vcGenerator = await guild.channels.cache.get(tempChannelInfo.vcGenerator);
+      vcGenerator.members
+        .map(i => i)
+        .forEach(
+          async member =>
+            createChannel(
+              { member, channel: member.voice.channel, guild: member.guild },
+              await userActivity(member),
+              tempChannelInfo
+            ).then(() =>
+              vcGenerator.permissionOverwrites
+                .edit(member?.id, { CONNECT: false })
+                .then(_ => setTimeout(() => vcGenerator.permissionOverwrites.delete(member?.id), 3000))
+            )
+          // member.voice.channel.id === tempChannelInfo.vcGenerator ? member.voice.setChannel(null) : ''
+        );
     });
   }, ms('6s'));
 };
