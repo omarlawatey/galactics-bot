@@ -1,7 +1,7 @@
 import { MessageEmbed } from 'discord.js';
 
 const avatar = interaction => {
-  const { commandName, options, channel } = interaction;
+  const { commandName, options } = interaction;
 
   if (commandName === 'avatar') {
     const user = options.getUser('user') || 0;

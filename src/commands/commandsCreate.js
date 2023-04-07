@@ -4,6 +4,7 @@ const commandsCreate = (commands, DiscordJS) => {
   commands?.create(slowMode(DiscordJS));
   commands?.create(avatar(DiscordJS));
   commands?.create(diceRoll(DiscordJS));
+  commands?.create(user(DiscordJS));
 };
 
 // const badword = DiscordJS => {
@@ -403,6 +404,19 @@ const diceRoll = DiscordJS => ({
       description: 'max number allowed',
       required: false,
       type: DiscordJS.Constants.ApplicationCommandOptionTypes.NUMBER
+    }
+  ]
+});
+
+const user = DiscordJS => ({
+  name: 'user',
+  description: 'get your account creation and server joined date',
+  options: [
+    {
+      name: 'user',
+      description: "Get's specific user",
+      required: false,
+      type: DiscordJS.Constants.ApplicationCommandOptionTypes.USER
     }
   ]
 });
