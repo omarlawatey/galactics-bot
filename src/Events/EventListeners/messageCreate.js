@@ -5,10 +5,6 @@ const messageCreate = client => {
   client.on('messageCreate', message => {
     if (message.author.bot) return;
 
-    // if (message.channel.id === '1091378896634642493') {
-    //   message.guild.channels.cache.get('1086033689143676981').send({ ...message });
-    // }
-
     // linksBlocker(message);
 
     GlobalVars.tempChannels.forEach(async tempChannel => {

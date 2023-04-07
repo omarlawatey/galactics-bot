@@ -4,3 +4,4 @@ export { default as slowMode } from './slowMode';
 export { default as avatar } from './avatar';
 export { default as diceRoll } from './diceRoll';
 export { default as user } from './user';
+export { default as serverInfo } from './serverInfo';

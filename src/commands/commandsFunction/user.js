@@ -30,8 +30,8 @@ const user = interaction => {
         });
     };
 
-    if (!user) return interaction.reply({ embeds: [getUserEmbed(interaction.user)], ephemeral: true });
-    if (user) return interaction.reply({ embeds: [getUserEmbed(user)], ephemeral: true });
+    if (!user) return interaction.reply({ embeds: [getUserEmbed(interaction.user)], ephemeral: false });
+    if (user) return interaction.reply({ embeds: [getUserEmbed(user)], ephemeral: false });
   }
 };
 

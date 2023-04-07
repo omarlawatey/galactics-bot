@@ -5,6 +5,7 @@ const commandsCreate = (commands, DiscordJS) => {
   commands?.create(avatar(DiscordJS));
   commands?.create(diceRoll(DiscordJS));
   commands?.create(user(DiscordJS));
+  commands?.create(serverInfo(DiscordJS));
 };
 
 // const badword = DiscordJS => {
@@ -410,7 +411,7 @@ const diceRoll = DiscordJS => ({
 
 const user = DiscordJS => ({
   name: 'user',
-  description: 'get your account creation and server joined date',
+  description: 'Get your account creation and server joined date',
   options: [
     {
       name: 'user',
@@ -419,6 +420,11 @@ const user = DiscordJS => ({
       type: DiscordJS.Constants.ApplicationCommandOptionTypes.USER
     }
   ]
+});
+
+const serverInfo = DiscordJS => ({
+  name: 'server-info',
+  description: "Get's Server's full info"
 });
 
 export default commandsCreate;

@@ -1,4 +1,4 @@
-import { liveStatus, clear, slowMode, avatar, diceRoll, user } from './commandsFunction';
+import { liveStatus, clear, slowMode, avatar, diceRoll, user, serverInfo } from './commandsFunction';
 
 const commands = interaction => {
   liveStatus(interaction);
@@ -7,6 +7,7 @@ const commands = interaction => {
   avatar(interaction);
   diceRoll(interaction);
   user(interaction);
+  serverInfo(interaction);
 };
 
 export default commands;
