@@ -51,6 +51,7 @@ const serverInfo = async interaction => {
           inline: true
         }
       )
+      .setColor('#1f0557')
       .setThumbnail(interaction.guild.iconURL({ dynamic: true, size: 2048 }));
 
     return interaction.reply({ embeds: [serverInfoEmbed], ephemeral: false });

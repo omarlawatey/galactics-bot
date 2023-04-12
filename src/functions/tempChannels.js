@@ -27,11 +27,8 @@ const tempChannels = async (oldState, newState, guild, tempChannel) => {
     );
 
   if (oldState?.channel?.parentId === tempChannel.categoryId) {
-    if (newState?.channel?.parentId !== tempChannel.categoryId) {
+    if (newState?.channel?.parentId !== tempChannel.categoryId)
       editVc.permissionOverwrites.delete(oldState?.member?.id);
-
-      oldState?.channel?.permissionOverwrites.delete(oldState?.member?.id);
-    }
 
     if (tempChannelVc.id !== oldState?.channel?.id && oldState?.channel?.members.size === 0) {
       const oldDbVc = await (await tempChannelsdb.get(`?channelId=${oldState?.channel?.id}`)).data[0];
