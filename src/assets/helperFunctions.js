@@ -1,4 +1,4 @@
-import Canvas from 'canvas';
+import Canvas from '@napi-rs/canvas';
 import Jimp from 'jimp';
 import { lastWelcomeddb, tempChannelsdb } from '../apis';
 import youtube from '../apis/youtube';
@@ -109,5 +109,5 @@ export const welcomeImage = async (member, link) => {
   // Draw a shape onto the main canvas
   ctx.drawImage(avatar, 197, 33, 106, 106);
 
-  return canvas.toBuffer();
+  return canvas.encode('png');
 };
